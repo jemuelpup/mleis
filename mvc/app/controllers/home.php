@@ -2,7 +2,8 @@
 
 class Home extends Controller{
 	public function index(){
-//		$this->model('DBAccess');
+		//		$this->model('DBAccess');
+		$this->model('Home_model');
 		echo "nasahomesdf";
 	}
 	
