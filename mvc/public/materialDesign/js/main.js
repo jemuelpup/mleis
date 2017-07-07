@@ -1,0 +1,8 @@
+$(document).ready(function(){
+	
+	$('.fa-bars').click(function(){
+		$("header .nav").toggleClass("active");
+	});
+	
+	
+});
