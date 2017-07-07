@@ -1,9 +1,7 @@
-Spatial = array(
-"GEOMETRY",
-"POINT",
-"LINESTRING",
-"POLYGON",
-"MULTIPOINT",
-"MULTILINESTRING",
-"MULTIPOLYGON",
-"GEOMETRYCOLLECTION");
+'fieldName'
+'required'
+'defaultVal'
+'dataType'
+
+
+"UPDATE deduction_tbl SET id=[value-1],name=[value-2],active=[value-3],placeholder=[value-4],inModal=[value-5],taxDeductable=[value-6],deleted=[value-7] WHERE 1"
