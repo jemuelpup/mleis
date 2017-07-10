@@ -1,4 +1,5 @@
 <?php
+echo "dumaan dito";
 /*
 Note:
 - This class separates the url and get the class, method, and prameters
@@ -20,6 +21,7 @@ class App{
 		$hasMethod = false;
 		$url = $this->parseUrl();
 		if(file_exists('../app/controllers/'.$url[0].'.php')){
+			echo "dumaan dito2";
 			$this->controller = $url[0];
 			unset($url[0]);
 		}

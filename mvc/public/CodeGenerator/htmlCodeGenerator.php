@@ -1,5 +1,5 @@
 <?php
-
+require_once 'generalFunctions.php';
 /*
 Notes:
 $tableData[0] - contains table name
@@ -15,16 +15,21 @@ class HTMLCodeGenerator{
 			allowPlaceHolder - boolean
 */
 	public function generateInputFields($tableData,$allowPlaceHolder,$convertToText){
+		$gFunc = new GeneralFunction;
 		$placeHolderCode = "";
+		$value = '';
 		echo $tableData[0]['tableName']."<br>";
 		
 		foreach($tableData[1] as $fieldData){
 			$field=trim($fieldData["fieldName"]);
+			if($fieldData["defaultVal"]!=''){
+				$value = " value=".$fieldData["defaultVal"];
+			}
 			if($allowPlaceHolder)
 				$placeHolderCode = "placeholder='".$fieldData["fieldName"]."'";
 			if($field!=''){
 //				echo $this->getDataType($fieldData["dataType"]);
-				$code = "<input $placeHolderCode type='".$this->getDataType($fieldData["dataType"])."' name='".$fieldData["fieldName"]."' class='validate'".$this->getRequired($fieldData["required"])." value=".$fieldData["defaultVal"].">
+				$code = "<input $placeHolderCode type='".$gFunc->getDataType($fieldData["dataType"])."' name='".$fieldData["fieldName"]."' class='validate'".$this->getRequired($fieldData["required"])."$value>
 				<label for='".$fieldData["fieldName"]."'>".$fieldData["fieldName"]."</label>";
 				if($convertToText)
 					$code = $this->converthtmlToText($code);
@@ -46,66 +51,7 @@ class HTMLCodeGenerator{
 			return " required";
 		return "";
 	}
-	private function getDataType($dataType){
-		
-		if(preg_match("/[a-zA-z]+/", $dataType, $matches)){
-			$dataType = $matches[0];
-		}
-		$numeric = array(
-			"INT",
-			"TINYINT",
-			"SMALLINT",
-			"MEDIUMINT",
-			"BIGINT",
-			"DECIMAL",
-			"FLOAT",
-			"DOUBLE",
-			"REAL",
-			"BIT",
-			"BOOLEAN",
-			"SERIAL");
-		$string = array(
-			"VARCHAR",
-			"TEXT",
-			"CHAR",
-			"VARCHAR",
-			"TINYTEXT",
-			"TEXT",
-			"MEDIUMTEXT",
-			"LONGTEXT",
-			"BINARY",
-			"VARBINARY",
-			"TINYBLOB",
-			"MEDIUMBLOB",
-			"BLOB",
-			"LONGBLOB",
-			"ENUM",
-			"SET");
-		$dateAndTime = array(
-			"DATE",
-			"DATETIME",
-			"TIMESTAMP",
-			"TIME",
-			"YEAR");
-		$spatial = array(
-			"GEOMETRY",
-			"POINT",
-			"LINESTRING",
-			"POLYGON",
-			"MULTIPOINT",
-			"MULTILINESTRING",
-			"MULTIPOLYGON",
-			"GEOMETRYCOLLECTION");
-		
-		
-		foreach($numeric as $n){if(strcasecmp($n,$dataType)===0){return 'number';}}
-		foreach($string as $n){if(strcasecmp($n,$dataType)===0){return 'text';}}
-		foreach($dateAndTime as $n){if(strcasecmp($n,$dataType)===0){return 'date';}}
-		foreach($spatial as $n){if(strcasecmp($n,$dataType)===0){return 'spacial';}}
-		
-		
-		
-	}
+
 	// This function converts html code to text in browser
 	private function converthtmlToText($code){
 		$code = str_replace("<","&lt;",$code);

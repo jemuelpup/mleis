@@ -1,3 +1,6 @@
+<html><head><style>html{background-color: #f1f1f1;}</style></head></html>
+
+
 <?php
 	require_once 'databaseCodeGenerator.php';
 	require_once 'phpCodeGenerator.php';
@@ -24,26 +27,48 @@
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 	";
 	$tableData = [];
-	$fileNamesArray = array("home","login","report");
+	$fileNamesArray = array("admin","home","login","report");
+
+	$functionNameArray = array("CreateTeams","CreatePositions","CreateEmployees","CreateCustomers","Edit Emplyoyee Data",
+"Edit Position",
+"Edit Teams",
+"Edit customers",
+"Create account",
+"Create transaction",
+"Create reports",
+"Login");
+
+
 
 	// Class instantiation
 	$qf = new QueryFormatter;
 	$htmlCG = new HTMLCodeGenerator;
-	$phpCodeGenerator = new PHPCodeGenerator;
+	$phpCG = new PHPCodeGenerator;
 	$dbcg = new DatabaseCodeGenerator;
-
-	// Operations
 	$tableData = $qf->formatQuery($query);
-	//$phpCodeGenerator->createFoldersForMVC("tempFiles",$fileNamesArray);
+	
 
 
-
+// Operations
 	if(count($tableData)){
+		
+		// create mvc folders and files
+		$phpCG->createFoldersForMVC("tempFiles",$fileNamesArray);
+		
+		// create input forms
 //		$htmlCG->generateInputFields($tableData,true,false);
-		echo $dbcg->createInsertQuery($tableData);
+		
+		// insert query function
+//		$dbcg->createInsertQuery($tableData);echo "<br>";
+		
+		// this is query formatter function
+//		$phpCG->getNumberFields($tableData);echo "<br>";
+		
+		// create function code here
+//		$phpCG->createFunctionsCode($functionNameArray);
 		
 	}
-
+	
 
 
 	// Function calls
