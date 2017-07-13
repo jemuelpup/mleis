@@ -7,6 +7,9 @@ class Controller{
 			require_once '../app/models/'.$model.'.php';
 			return new $model();
 		}
+		else{
+			echo '../app/models/'.$model.'.php';
+		}
 	}
 	
 	public function view($view,$data=""){

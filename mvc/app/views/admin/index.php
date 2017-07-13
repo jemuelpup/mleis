@@ -1,3 +1,10 @@
-<html>
-	<p>nasa admin ako</p>
-</html>
+<?php
+
+echo "asdfadfa";
+?>
+
+
+
+<?php include('../parts/header.php')?>
+<p>hwfhshfsdhfh</p>
+<?php include('../parts/footer.php')?>

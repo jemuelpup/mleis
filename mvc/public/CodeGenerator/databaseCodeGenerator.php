@@ -16,7 +16,7 @@ class DatabaseCodeGenerator{
 		}
 		$fields = substr($fields,0,-1);
 		$query = "INSERT INTO ".$tableData[0]['tableName']."($fields) VALUES ()";
-		echo $query;	
+		echo $query;
 	}
 	
 	public function queryModel($arrayDataHere){

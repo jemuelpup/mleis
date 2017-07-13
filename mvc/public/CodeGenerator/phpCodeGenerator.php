@@ -28,7 +28,7 @@ class PHPCodeGenerator extends DatabaseCodeGenerator{
 		foreach($fArray as $fa){
 			$fa = str_replace(' ','',$fa);
 			$fa = lcFirst($fa);
-			echo "function $fa(\$data){<br><br>}<br>";
+			echo "public function $fa(\$data){<br><br>}<br>";
 		}
 	}
 	

@@ -29,13 +29,13 @@
 	$tableData = [];
 	$fileNamesArray = array("admin","home","login","report");
 
-	$functionNameArray = array("CreateTeams","CreatePositions","CreateEmployees","CreateCustomers","Edit Emplyoyee Data",
-"Edit Position",
-"Edit Teams",
-"Edit customers",
-"Create account",
-"Create transaction",
-"Create reports",
+	$functionNameArray = array("addTeams","addPositions","addEmployees","addCustomers","update Emplyoyee",
+"update Position",
+"update Teams",
+"update customers",
+"add account",
+"add transaction",
+"add reports","get positions","get teams","get customers","get employees",
 "Login");
 
 
@@ -53,13 +53,13 @@
 	if(count($tableData)){
 		
 		// create mvc folders and files
-		$phpCG->createFoldersForMVC("tempFiles",$fileNamesArray);
+//		$phpCG->createFoldersForMVC("tempFiles",$fileNamesArray);
 		
 		// create input forms
 //		$htmlCG->generateInputFields($tableData,true,false);
 		
 		// insert query function
-//		$dbcg->createInsertQuery($tableData);echo "<br>";
+		$dbcg->createInsertQuery($tableData);echo "<br>";
 		
 		// this is query formatter function
 //		$phpCG->getNumberFields($tableData);echo "<br>";
